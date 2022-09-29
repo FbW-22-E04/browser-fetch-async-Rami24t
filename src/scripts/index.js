@@ -49,11 +49,18 @@ modal.addEventListener("click", (e) => {
 // })
 
 // 3. 2nd way
-async function promiseBtn() {
-    let btn = document.querySelector('#continue');
-    await btn.getAnimations()[0].finished;
-    alert('Continue to subscribe');
-    btn.style.backgroundColor = '#eee';
+function colorGenerator() {
+    let r = Math.floor(Math.random() * 256).toFixed(0);
+    let g = Math.floor(Math.random() * 256).toFixed(0);
+    let b = Math.floor(Math.random() * 256).toFixed(0);
+    let a = Math.random().toFixed(3);
+    return `rgba(${r},${g},${b},${a})`;
 }
 
-document.querySelector('#continue').addEventListener('mouseover', hover => promiseBtn())
+let btn = document.querySelector('#continue');
+async function promiseBtn() {
+    await btn.getAnimations()[0].finished;
+    alert('Continue to subscribe');
+    btn.style.backgroundColor = colorGenerator();
+}
+btn.addEventListener('mouseover', hover => promiseBtn());
